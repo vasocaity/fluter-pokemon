@@ -68,13 +68,15 @@ class _DetailScreenState extends State<DetailScreen> {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
           final pokemon = snapshot.data!;
-          return Column(
-            children: [
-              Image.network(pokemon.imageUrl),
-              Text(pokemon.name),
-              Text(pokemon.weight.toString()),
-              Text(pokemon.height.toString()),
-            ],
+          return Center(
+            child: Column(
+              children: [
+                Image.network(pokemon.imageUrl, width: 100, height: 200),
+                Text(pokemon.name),
+                Text(pokemon.weight.toString()),
+                Text(pokemon.height.toString()),
+              ],
+            ),
           );
         },
       ),

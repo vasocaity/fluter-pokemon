@@ -15,8 +15,9 @@ class PokedexApp extends StatelessWidget {
       title: 'Pokedex',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFFFC107),
-          brightness: Brightness.dark,
+          seedColor: const Color.fromARGB(255, 255, 7, 7),
+          // dynamicSchemeVariant: (),
+          // brightness: Brightness.dark,
         ),
         useMaterial3: true,
         fontFamily: 'Inter',

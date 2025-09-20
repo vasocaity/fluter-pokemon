@@ -72,26 +72,45 @@ class _PokemonListScreenState extends State<PokemonListScreen> {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
           final pokemon = snapshot.data!;
-          return ListView.builder(
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, // Number of columns
+              childAspectRatio: 1, // Aspect ratio of each grid item
+            ),
             itemCount: pokemon.length,
             itemBuilder: (context, index) {
               final poke = pokemon[index];
-              return ListTile(
-                leading: Image.network(
-                  poke.imageUrl,
-                  width: 56,
-                  height: 56,
-                  fit: BoxFit.cover,
-                ),
-                title: Text(poke.name),
+              return GestureDetector(
                 onTap: () {
-                  // add this function
                   Navigator.pushNamed(
                     context,
                     Routes.pokemonDetail,
                     arguments: poke.id,
                   );
                 },
+                child: Card(
+                  elevation: 4,
+                  margin: const EdgeInsets.all(8),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.network(
+                        poke.imageUrl,
+                        width: 80,
+                        height: 80,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        poke.name,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               );
             },
           );
